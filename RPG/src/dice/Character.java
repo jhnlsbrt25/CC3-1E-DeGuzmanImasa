@@ -1,56 +1,81 @@
 
 package dice;
 public class Character {
+        protected String name;
+        protected int strength;
+        protected int dexterity;
+        protected int intelligence;
+        protected int currentLife;
+        protected int maxLife;
+
+
     static Dice dice = new Dice();
-    
-    private final String name;
-    private final int strength;
-    private final int dexterity;
-    private final int intelligence;
-    private final int maxlife;
-    private int currentlife;
-    
-    Character (String a, int b, int c, int d){
-        this.name = a;
-        this.strength = b;
-        this.dexterity = c;
-        this.intelligence = d;
-        this.maxlife = 20;
-        this.currentlife = maxlife;
+
+    public Character(String n, int s, int d, int i) {
+     this.name=n;
+     this.strength=s;
+     this.dexterity=d;
+     this.intelligence=i;
+     this.maxLife=dice.roll()+50;
+     this.currentLife=maxLife;
+
     }
-    public int attack(){
-        int damage = dice.roll() + strength;
-        return damage;
+
+    public int attack() {
+         int attack=dice.roll()+strength;
+         return attack;
     }
-    public int wound(int damage){
-        currentlife -= damage;
-        return 0;
+
+    public void wound(int damage) {
+        currentLife=currentLife-damage;
+
     }
-    public int heal(int heal){
-        currentlife += heal;
-        if(currentlife > maxlife){
-           currentlife = maxlife;
-        }
-        return 0;
+
+    public void heal(int heal) {
+         if(currentLife>maxLife)
+             currentLife=currentLife+dice.roll() + intelligence;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public int getStrength(){
+
+    public int getStrength() {
         return strength;
     }
-    public int getDexterity(){
+
+    public int getDexterity() {
         return dexterity;
-    } 
-    public int getIntelligence(){
+    }
+
+    public int getIntelligence() {
         return intelligence;
     }
-    public int getMaxLife(){
-        return maxlife;
-    }
-    public int getCurrentLife(){
-        return currentlife;
-    }
-    
-}
 
+    public int getCurrentLife() {
+        return currentLife;
+    }
+
+    public int getMaxLife() {
+        return maxLife;
+    }
+    public void setName(String name){
+            this.name=name;
+    }
+    public void setStrength(int strength){
+            this.strength=strength;
+    }
+    public void setDexterity(int dexterity){
+            this.dexterity=dexterity;
+    }
+    public void setIntelligence(int intelligence){
+            this.intelligence=intelligence;
+    }
+    public void setMaxLife(int maxLife){
+            this.maxLife=maxLife;
+    }
+    public void setCurrentLife(int currentLife){
+        this.currentLife=currentLife;
+    }
+
+    } 
